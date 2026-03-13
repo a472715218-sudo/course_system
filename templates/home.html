@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>主页</title>
+
+<style>
+
+button{
+padding:20px;
+font-size:20px;
+margin:10px;
+}
+
+table{
+margin-top:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>コース选择</h2>
+
+{% for name,value in courses.items() %}
+
+<a href="/calc/{{name}}">
+<button>{{name}} ({{value}})</button>
+</a>
+
+{% endfor %}
+
+<hr>
+
+<h3>今日收入：{{today_total}}</h3>
+
+<hr>
+
+<h3>每个人收入</h3>
+
+{% for p in people %}
+
+<p>{{p[0]}} ： {{p[1]}}</p>
+
+{% endfor %}
+
+<hr>
+
+<h3>修改课程金额</h3>
+
+<form action="/update_course" method="post">
+
+<select name="course">
+
+{% for name,value in courses.items() %}
+
+<option value="{{name}}">{{name}}</option>
+
+{% endfor %}
+
+</select>
+
+<input name="value" placeholder="新金额">
+
+<button type="submit">修改</button>
+
+</form>
+
+<hr>
+
+<h2>记录</h2>
+
+<table border="1">
+
+<tr>
+
+<th>姓名</th>
+<th>课程</th>
+<th>输入</th>
+<th>结果</th>
+<th>时间</th>
+<th>删除</th>
+
+</tr>
+
+{% for r in records %}
+
+<tr>
+
+<td>{{r[1]}}</td>
+<td>{{r[2]}}</td>
+<td>{{r[4]}}</td>
+<td>{{r[5]}}</td>
+<td>{{r[6]}}</td>
+
+<td>
+<a href="/delete/{{r[0]}}">删除</a>
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+
+</html>
