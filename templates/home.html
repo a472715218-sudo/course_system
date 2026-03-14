@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-
-<html>
-
 <head>
+<title>Course System</title>
 
-<title>主页</title>
+<link rel="manifest" href="/static/manifest.json">
 
-<style>
+</head>
 
 button{
 padding:20px;
@@ -110,3 +107,11 @@ margin-top:20px;
 </body>
 
 </html>
+<script>
+if ("serviceWorker" in navigator) {
+navigator.serviceWorker.register("/static/service-worker.js")
+.then(function() {
+console.log("Service Worker Registered");
+});
+}
+</script>
